@@ -1,18 +1,16 @@
 import "mocha";
 import { expect, assert } from "chai";
 import { spy } from "sinon";
-import testFunc from "../index";
+import stack from "../index";
 
-describe("testFunc3 测试", function () {
-  it("可以正常累加", function () {
-    const mockCallback = spy();
-
-    const work = testFunc(mockCallback);
-    work();
-    work();
-    work();
-
-    expect(mockCallback.callCount).to.be.equal(3);
-    expect(mockCallback.args).to.be.deep.equal([[0], [1], [2]]);
+describe("栈 测试", function () {
+  it("可以正常入栈", function () {
+    stack.push(1);
+    stack.push(2);
+    expect(stack).to.be.deep.equal([1, 2]);
+  });
+  it("可以正常出栈", function () {
+    stack.pop();
+    assert.deepEqual(stack, [1]);
   });
 });
