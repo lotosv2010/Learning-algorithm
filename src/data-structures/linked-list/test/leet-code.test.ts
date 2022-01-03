@@ -1,14 +1,34 @@
 import "mocha";
 import { expect, assert } from "chai";
-import { deleteNode, listNode2, listNode1 } from "../leet-code";
+import { deleteNode, reverseList, ListNode } from "../leet-code";
 
-describe("删除链表中的节点 测试", function () {
-  it("删除节点5", function () {
+describe("链表 测试", function () {
+  it("删除链表中的节点", function () {
     // [4,5,1,9]
+    const listNode4 = new ListNode(9);
+    const listNode3 = new ListNode(1, listNode4);
+    const listNode2 = new ListNode(5, listNode3);
+    const listNode1 = new ListNode(4, listNode2);
     deleteNode(listNode2);
     // [4,1,9]
     expect(listNode1.val).to.be.equal(4);
     expect(listNode1.next?.val).to.be.equal(1);
     expect(listNode1.next?.next?.val).to.be.equal(9);
+  });
+  it("反转链表", function () {
+    // [1,2,3,4,5]
+    const listNode5 = new ListNode(5);
+    const listNode4 = new ListNode(4, listNode5);
+    const listNode3 = new ListNode(3, listNode4);
+    const listNode2 = new ListNode(2, listNode3);
+    const listNode1 = new ListNode(1, listNode2);
+
+    // [1,2,3,4,5]
+    const res: any = reverseList(listNode1);
+    expect(res.val).to.be.equal(5);
+    expect(res.next?.val).to.be.equal(4);
+    expect(res.next?.next?.val).to.be.equal(3);
+    expect(res.next?.next?.next?.val).to.be.equal(2);
+    expect(res.next?.next?.next?.next?.val).to.be.equal(1);
   });
 });
