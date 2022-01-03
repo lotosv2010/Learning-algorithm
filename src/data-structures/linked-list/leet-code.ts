@@ -87,3 +87,29 @@ export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNod
   }
   return res.next;
 };
+
+// todo 删除排序链表中的重复元素
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+export function deleteDuplicates(head: ListNode | null): ListNode | null {
+  if(!head) return head;
+  let p = head;
+  while(p && p.next) {
+    if(p.val === p.next.val) {
+      p.next = p.next.next;
+    } else {
+      p = p.next;
+    }
+  }
+  return head;
+};
