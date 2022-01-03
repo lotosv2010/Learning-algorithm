@@ -1,6 +1,6 @@
 import "mocha";
 import { expect, assert } from "chai";
-import { deleteNode, reverseList, ListNode } from "../leet-code";
+import { deleteNode, reverseList, addTwoNumbers, ListNode } from "../leet-code";
 
 describe("链表 测试", function () {
   it("删除链表中的节点", function () {
@@ -30,5 +30,17 @@ describe("链表 测试", function () {
     expect(res.next?.next?.val).to.be.equal(3);
     expect(res.next?.next?.next?.val).to.be.equal(2);
     expect(res.next?.next?.next?.next?.val).to.be.equal(1);
+  });
+  it("两数相加", function () {
+    // [2,4,3]
+    // [5,6,4]
+    const list1 = new ListNode(2, new ListNode(4, new ListNode(3)));
+    const list2 = new ListNode(5, new ListNode(6, new ListNode(4)));
+
+    // [7,0,8]
+    const res: any = addTwoNumbers(list1, list2);
+    assert.equal(res.val, 7);
+    assert.equal(res.next.val, 0);
+    assert.equal(res.next.next.val, 8);
   });
 });
