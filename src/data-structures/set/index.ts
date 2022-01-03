@@ -34,6 +34,26 @@ export function intersection(set1: Set<any>, set2: Set<any>): Set<any> {
  * @param set2 
  * @returns 
  */
- export function union(set1: Set<any>, set2: Set<any>): Set<any> {
+export function union(set1: Set<any>, set2: Set<any>): Set<any> {
   return new Set([...set1, ...set2]);
+}
+
+/**
+ * 求差集
+ * @param set1 
+ * @param set2 
+ * @returns 
+ */
+export function difference(set1: Set<any>, set2: Set<any>): Set<any> {
+  return new Set([...set1].filter(item => !set2.has(item)));
+}
+
+/**
+ * Set add
+ * @param val 
+ * @returns 
+ */
+export function add(set: Set<any>, val: any) {
+  set.add(val);
+  return set;
 }
