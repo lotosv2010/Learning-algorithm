@@ -1,6 +1,6 @@
 import "mocha";
 import { expect, assert } from "chai";
-import { deleteNode, reverseList, addTwoNumbers, deleteDuplicates, ListNode } from "../leet-code";
+import { deleteNode, reverseList, addTwoNumbers, deleteDuplicates, hasCycle, ListNode } from "../leet-code";
 
 describe("链表 测试", function () {
   it("删除链表中的节点", function () {
@@ -52,5 +52,17 @@ describe("链表 测试", function () {
     assert.equal(res.val, 1);
     assert.equal(res.next.val, 2);
     assert.equal(res.next.next.val, 3);
+  });
+  it("环形链表", function () {
+    // head = [3,2,0,-4], pos = 1
+    const nodeList4: any = new ListNode(-4)
+    const list = new ListNode(3, new ListNode(2, new ListNode(0, nodeList4)));
+    nodeList4.next = list.next;
+    const res: any = hasCycle(list);
+    assert.equal(res, true);
+    // head = [3,2,0,-4], pos = -1
+    const list2 = new ListNode(3, new ListNode(2, new ListNode(0, new ListNode(-4))));
+    const res2: any = hasCycle(list2);
+    assert.equal(res2, false);
   });
 });
