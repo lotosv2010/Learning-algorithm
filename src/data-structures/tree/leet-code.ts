@@ -163,3 +163,34 @@ export function inorderTraversal2(root: TreeNode | null): number[] {
   }
   return nodeList;
 };
+
+// todo 路径总和
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+export function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
+  if(!root) return false;
+  let res = false;
+  const dfs = (root: TreeNode | null, sum: number) => {
+    if(root) {
+      if(!root?.left && !root?.right && sum === targetSum) {
+        res = true;
+      }
+      root?.left && dfs(root?.left, sum + root!.left!.val);
+      root?.right && dfs(root?.right, sum + root!.right!.val);
+    }
+  }
+  dfs(root, root!.val);
+  return res;
+};
