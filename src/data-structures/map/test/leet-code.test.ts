@@ -1,6 +1,6 @@
 import "mocha";
 import { expect, assert } from "chai";
-import { intersection, isValid, twoSum, lengthOfLongestSubstring } from "../leet-code";
+import { intersection, isValid, twoSum, lengthOfLongestSubstring, minWindow } from "../leet-code";
 
 describe("字典Map LeetCode 测试", function () {
   it("两个数组的交集", function () {
@@ -78,5 +78,23 @@ describe("无重复字符的最长子串(Map) LeetCode 测试", function () {
     // 输入：s = "abba"
     // 输出：2
     expect(lengthOfLongestSubstring('abba')).to.be.deep.equal(2);
+  });
+});
+
+describe("最小覆盖子串(Map) LeetCode 测试", function () {
+  it("最小覆盖子串", function () {
+    // 输入：s = "ADOBECODEBANC", t = "ABC"
+    // 输出："BANC"
+    expect(minWindow('ADOBECODEBANC', 'ABC')).to.be.deep.equal('BANC');
+  });
+  it("最小覆盖子串", function () {
+    // 输入：s = "a", t = "a"
+    // 输出："a"
+    expect(minWindow('a', 'a')).to.be.deep.equal('a');
+  });
+  it("最小覆盖子串", function () {
+    // 输入：s = "a", t = "aa"
+    // 输出：""
+    expect(minWindow('a', 'aa')).to.be.deep.equal('');
   });
 });
