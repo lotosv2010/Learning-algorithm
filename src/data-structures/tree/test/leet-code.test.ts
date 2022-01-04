@@ -1,6 +1,6 @@
 import "mocha";
 import { expect, assert } from "chai";
-import { maxDepth, maxDepth2, minDepth, minDepth2 } from "../leet-code";
+import { maxDepth, maxDepth2, minDepth, minDepth2, levelOrder } from "../leet-code";
 
 describe("二叉树的最大深度 测试", function () {
   const tree: any = {
@@ -47,5 +47,26 @@ describe("二叉树的最小深度 测试", function () {
   });
   it("广度优先遍历", function () {
     assert.equal(minDepth2(tree), 5);
+  });
+});
+
+describe("二叉树的层序遍历 测试", function () {
+  const tree: any = {
+    val: 3,
+    left: {
+      val: 9
+    },
+    right: {
+      val: 20,
+      left: {
+        val: 15
+      },
+      right: {
+        val: 7
+      }
+    }
+  };
+  it("深度优先遍历", function () {
+    assert.deepEqual(levelOrder(tree), [[3], [9, 20], [15, 7]]);
   });
 });
