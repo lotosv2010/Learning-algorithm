@@ -31,3 +31,18 @@ export function isValid(s: string): boolean {
   }
   return stack.length === 0; 
 };
+
+// todo 两数之和
+export function twoSum(nums: number[], target: number): number[] {
+  const map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const n = nums[i];
+    const ret = target - n;
+    if(map.has(ret)) {
+      return [map.get(ret), i];
+    } else {
+      map.set(n, i);
+    }
+  }
+  return [];
+};

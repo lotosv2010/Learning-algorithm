@@ -1,6 +1,6 @@
 import "mocha";
 import { expect, assert } from "chai";
-import { intersection, isValid } from "../leet-code";
+import { intersection, isValid, twoSum } from "../leet-code";
 
 describe("字典Map LeetCode 测试", function () {
   it("两个数组的交集", function () {
@@ -19,7 +19,7 @@ describe("字典Map LeetCode 测试", function () {
   });
 });
 
-describe("有效的括号 Map方式 测试", function () {
+describe("有效的括号(Map方式) LeetCode 测试", function () {
   it("左括号必须用相同类型的右括号闭合", function () {
     expect(isValid('({[]})')).to.be.equal(true);
   });
@@ -31,5 +31,29 @@ describe("有效的括号 Map方式 测试", function () {
   });
   it("括号类型不匹配", function () {
     assert.equal(isValid('(()()()]'), false);
+  });
+});
+
+describe("两数之和(Map) LeetCode 测试", function () {
+  it("两个数组的交集", function () {
+    // 输入：nums = [2,7,11,15], target = 9
+    // 输出：[0,1]
+    const nums = [2, 7, 11, 15];
+    const target = 9;
+    expect(twoSum(nums, target)).to.be.deep.equal([0, 1]);
+  });
+  it("两个数组的交集", function () {
+    // 输入：nums = [3, 2, 4], target = 6
+    // 输出：[1, 2]
+    const nums = [3, 2, 4];
+    const target = 6;
+    expect(twoSum(nums, target)).to.be.deep.equal([1, 2]);
+  });
+  it("两个数组的交集", function () {
+    // 输入：nums = [3, 3], target = 6
+    // 输出：[0,1]
+    const nums = [3, 3];
+    const target = 6;
+    expect(twoSum(nums, target)).to.be.deep.equal([0, 1]);
   });
 });
