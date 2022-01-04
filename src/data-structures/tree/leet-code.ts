@@ -85,3 +85,34 @@ export function minDepth2(root: TreeNode | null): number {
   }
   return res;
 }
+
+// todo 二叉树的层序遍历
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+export function levelOrder(root: TreeNode | null): number[][] {
+  const queue: Array<Array<any>> = [];
+  const res:number[][]  = [];
+  if(root) {
+    queue.unshift([root, 0]); // [节点, 层级]
+    while(queue.length !== 0) { 
+      const [node, level]: any = queue.shift();
+      !res[level] && (res[level] = []);
+      res[level]?.push(node.val);
+      node?.left && queue.push([node?.left, level + 1]);
+      node?.right && queue.push([node?.right, level + 1]);
+    }
+  }
+  return res;
+};
