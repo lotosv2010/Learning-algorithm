@@ -116,3 +116,50 @@ export function levelOrder(root: TreeNode | null): number[][] {
   }
   return res;
 };
+
+// todo 二叉树的中序遍历
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+// 递归
+export function inorderTraversal(root: TreeNode | null): number[] {
+  const res: number[] = [];
+  const rec = (root: TreeNode | null) => {
+    if(root) {
+      rec(root?.left);
+      res.push(root?.val);
+      rec(root?.right);
+    }
+  }
+  rec(root);
+  return res;
+}
+
+// 非递归
+export function inorderTraversal2(root: TreeNode | null): number[] {
+  const nodeList = [];
+  if(root) {
+    const stack = [];
+    let p: any = root;
+    while(stack.length > 0 || p) {
+      while(p) { // 左子树入栈
+        stack.push(p);
+        p = p?.left;
+      }
+      const node = stack.pop(); // 左子树最左叶子节点，出栈
+      nodeList.push(node?.val); // 访问(根)节点
+      p = node?.right; // 右子树入栈
+    }
+  }
+  return nodeList;
+};
