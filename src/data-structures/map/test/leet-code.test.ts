@@ -1,6 +1,6 @@
 import "mocha";
 import { expect, assert } from "chai";
-import { intersection, isValid, twoSum } from "../leet-code";
+import { intersection, isValid, twoSum, lengthOfLongestSubstring } from "../leet-code";
 
 describe("字典Map LeetCode 测试", function () {
   it("两个数组的交集", function () {
@@ -35,25 +35,48 @@ describe("有效的括号(Map方式) LeetCode 测试", function () {
 });
 
 describe("两数之和(Map) LeetCode 测试", function () {
-  it("两个数组的交集", function () {
+  it("两数之和", function () {
     // 输入：nums = [2,7,11,15], target = 9
     // 输出：[0,1]
     const nums = [2, 7, 11, 15];
     const target = 9;
     expect(twoSum(nums, target)).to.be.deep.equal([0, 1]);
   });
-  it("两个数组的交集", function () {
+  it("两数之和", function () {
     // 输入：nums = [3, 2, 4], target = 6
     // 输出：[1, 2]
     const nums = [3, 2, 4];
     const target = 6;
     expect(twoSum(nums, target)).to.be.deep.equal([1, 2]);
   });
-  it("两个数组的交集", function () {
+  it("两数之和", function () {
     // 输入：nums = [3, 3], target = 6
     // 输出：[0,1]
     const nums = [3, 3];
     const target = 6;
     expect(twoSum(nums, target)).to.be.deep.equal([0, 1]);
+  });
+});
+
+describe("无重复字符的最长子串(Map) LeetCode 测试", function () {
+  it("无重复字符的最长子串", function () {
+    // 输入：s = "abcabcbb"
+    // 输出：3
+    expect(lengthOfLongestSubstring('abcabcbb')).to.be.deep.equal(3);
+  });
+  it("无重复字符的最长子串", function () {
+    // 输入：s = "bbbbb"
+    // 输出：1
+    expect(lengthOfLongestSubstring('bbbbb')).to.be.deep.equal(1);
+  });
+  it("无重复字符的最长子串", function () {
+    // 输入：s = "pwwkew"
+    // 输出：3
+    expect(lengthOfLongestSubstring('pwwkew')).to.be.deep.equal(3);
+  });
+  it("无重复字符的最长子串", function () {
+    // 输入：s = "abba"
+    // 输出：2
+    expect(lengthOfLongestSubstring('abba')).to.be.deep.equal(2);
   });
 });

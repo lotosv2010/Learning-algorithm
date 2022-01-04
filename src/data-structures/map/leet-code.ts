@@ -46,3 +46,20 @@ export function twoSum(nums: number[], target: number): number[] {
   }
   return [];
 };
+
+// todo 无重复字符的最长子串
+export function lengthOfLongestSubstring(s: string): number {
+  let l = 0; // 左指针
+  let res = 0;
+  const map = new Map();
+  for (let r = 0; r < s.length; r++) { // r 右指针
+    const sub = s[r];
+    const i: number = map.get(sub); // map中重复字符的下标
+    if(map.has(sub) && i >= l) { // i >= r 排除 abba，这种情况，保证重复字符在滑动窗口里面
+      l = i + 1; // 如果找到重复的，就讲左指针移动到重复字符的下一位
+    }
+    res = Math.max(res, r - l + 1);
+    map.set(sub, r); // 利用了map唯一的特性
+  }
+  return res;
+};
