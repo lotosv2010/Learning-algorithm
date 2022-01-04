@@ -81,7 +81,7 @@ export function minWindow(s: string, t: string): string {
       if(need.get(c) === 0) needType -= 1;
     }
     while(needType === 0) {
-      console.log(s.substring(l, r + 1));
+      // console.log(s.substring(l, r + 1));
       const newRes = s.substring(l, r + 1);
       if(!res || newRes.length < res.length) res = newRes;
       const c2 = s[l];
