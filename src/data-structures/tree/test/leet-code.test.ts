@@ -1,6 +1,6 @@
 import "mocha";
 import { expect, assert } from "chai";
-import { maxDepth, maxDepth2, minDepth, minDepth2, levelOrder,  inorderTraversal, inorderTraversal2 } from "../leet-code";
+import { maxDepth, maxDepth2, minDepth, minDepth2, levelOrder,  inorderTraversal, inorderTraversal2, hasPathSum } from "../leet-code";
 
 describe("二叉树的最大深度 测试", function () {
   const tree: any = {
@@ -92,5 +92,20 @@ describe("二叉树的中序遍历 测试", function () {
   });
   it("非递归", function () {
     assert.deepEqual(inorderTraversal2(tree), [ 9, 3, 15, 20, 7 ]);
+  });
+});
+
+describe("路径总和 测试", function () {
+  const tree: any = {
+    val: 1,
+    left: {
+      val: 2
+    },
+    right: {
+      val: 3
+    }
+  };
+  it("路径总和", function () {
+    assert.equal(hasPathSum(tree, 5), false);
   });
 });
