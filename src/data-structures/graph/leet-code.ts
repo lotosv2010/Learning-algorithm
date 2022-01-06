@@ -90,3 +90,62 @@ export function pacificAtlantic(heights: number[][]): number[][] {
   // console.log(res);
   return res;
 };
+
+// todo 克隆图
+/**
+ * Definition for Node.
+ * class Node {
+ *     val: number
+ *     neighbors: Node[]
+ *     constructor(val?: number, neighbors?: Node[]) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.neighbors = (neighbors===undefined ? [] : neighbors)
+ *     }
+ * }
+ */
+class Node {
+  val: number
+  neighbors: Node[]
+  constructor(val?: number, neighbors?: Node[]) {
+    this.val = (val===undefined ? 0 : val)
+    this.neighbors = (neighbors===undefined ? [] : neighbors)
+  }
+}
+// 深度优先遍历
+export function cloneGraph(node: Node | null): Node | null {
+	if(!node) return null;
+  const visited = new Map();
+  const dfs = (n: Node) => {
+    // console.log(n.val);
+    const nCopy = new Node(n.val);
+    visited.set(n, nCopy);
+    n?.neighbors?.forEach(ne => {
+      if(!visited.has(ne)) {
+        dfs(ne);
+      }
+      nCopy.neighbors.push(visited.get(ne));
+    });
+  }
+  dfs(node);
+  // console.log(visited)
+  return visited.get(node);
+};
+
+// 广度优先遍历
+export function cloneGraph1(node: Node | null): Node | null {
+	if(!node) return null;
+  const visited = new Map();
+  visited.set(node, new Node(node.val));
+  const queue = [node]
+  while(queue.length) {
+    const n: Node = queue.shift() as Node;
+    n?.neighbors?.forEach(ne => {
+      if(!visited.has(ne)) {
+        queue.push(ne);
+        visited.set(ne, new Node(ne.val));
+      }
+      visited.get(n).neighbors.push(visited.get(ne));
+    })
+  }
+  return visited.get(node);
+};
