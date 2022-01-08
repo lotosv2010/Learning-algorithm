@@ -40,4 +40,3 @@ export function binary1(arr: any[], target: any, start:number = 0 , end: number 
   console.timeEnd('二分搜索');
   return -1;
 }
-binary1([1,2,3,4], 58)
