@@ -1,6 +1,6 @@
 import { describe, it } from 'mocha';
 import { expect, assert } from 'chai';
-import { guessNumber, invertTree, TreeNode, isSameTree } from '../leetcode';
+import { guessNumber, invertTree, TreeNode, isSameTree, isSymmetric } from '../leetcode';
 
 describe('分而治之-猜数字大小 测试', () => {
   it('猜数字大小', () => {
@@ -88,5 +88,39 @@ describe('分而治之-相同的树 测试', () => {
       )
     );
     assert.equal(isSameTree(p, q), false);
+  });
+});
+describe('分而治之-对称二叉树 测试', () => {
+  it('对称二叉树', () => {
+    const tree = new TreeNode(
+      1,
+      new TreeNode(
+        2,
+        new TreeNode(3),
+        new TreeNode(4)
+      ),
+      new TreeNode(
+        2,
+        new TreeNode(4),
+        new TreeNode(3)
+      )
+    );
+    assert.equal(isSymmetric(tree), true);
+  });
+  it('对称二叉树', () => {
+    const tree = new TreeNode(
+      1,
+      new TreeNode(
+        2,
+        null,
+        new TreeNode(4)
+      ),
+      new TreeNode(
+        2,
+        null,
+        new TreeNode(3)
+      )
+    );
+    assert.equal(isSymmetric(tree), false);
   });
 });
