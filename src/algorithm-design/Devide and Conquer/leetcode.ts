@@ -92,3 +92,35 @@ export function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
   }
   return false;
 };
+
+// todo 对称二叉树
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+export function isSymmetric(root: TreeNode | null): boolean {
+  if(!root) return true;
+  const rec = (l: TreeNode | null, r: TreeNode | null): boolean => {
+    if(!l && !r) return true; // 递归结束条件
+    if(
+      l && r &&
+      l.val === r.val &&
+      rec(l.left, r.right) &&
+      rec(l.right, r.left)
+    ) {
+      return true;
+    }
+    return false;
+  }
+  return rec(root.left, root.right);
+};
