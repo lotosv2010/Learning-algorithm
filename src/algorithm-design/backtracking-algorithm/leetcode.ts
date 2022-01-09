@@ -16,3 +16,21 @@ export function permute(nums: number[]): number[][] {
   backtrack([]);
   return res;
 };
+
+// todo 子集
+export function subsets(nums: number[]): number[][] {
+  const res: number[][] = [];
+  const backtrack = (path: number[], l: number, start: number) => {
+    if(path.length === l) { // 递归结束条件
+      res.push(path);
+      return;
+    }
+    for (let i = start; i < nums.length; i++) {
+      backtrack(path.concat(nums[i]), l, i + 1);
+    }
+  }
+  for (let i = 0; i <= nums.length; i++) {
+    backtrack([], i, 0);
+  }
+  return res;
+};
