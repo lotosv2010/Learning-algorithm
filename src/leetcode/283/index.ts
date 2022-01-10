@@ -3,6 +3,7 @@
  * Do not return anything, modify nums in-place instead.
  */
 export function moveZeroes(nums: number[]): number[] {
+  console.time('移动零');
   let left: number = 0;
   let right: number = 0;
   for (let i = 0; i < nums.length; i++) {
@@ -12,5 +13,6 @@ export function moveZeroes(nums: number[]): number[] {
     }
     right++;
   }
+  console.timeEnd('移动零');
   return nums;
 }
