@@ -1,7 +1,7 @@
 /**
  * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
  * 时间复杂度：O(n)
- * 空间复杂度：O(1)
+ * 空间复杂度：O(m)，m为最大不重复子串的长度
  */
 export function lengthOfLongestSubstring(s: string): number {
   console.time('无重复字符的最长子串');
