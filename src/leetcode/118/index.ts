@@ -1,6 +1,7 @@
 /**
- * 时间复杂度：O(r*c)
- * 空间复杂度：O(r*c)
+ * (首项+末项)*项数/2
+ * 时间复杂度：O(n*n)，(1 + n) * n / 2
+ * 空间复杂度：O(n*n)，(1 + n) * n / 2
  */
 export function generate(numRows: number): number[][] {
   console.time('杨辉三角');
