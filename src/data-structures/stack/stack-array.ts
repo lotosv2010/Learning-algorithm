@@ -21,6 +21,9 @@ class Stack {
   size() {
     return this.stack.length;
   }
+  toString() {
+    return this.stack.toString();
+  }
 }
 
 export default Stack;
