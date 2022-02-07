@@ -26,5 +26,8 @@ class Stack<K, V> {
   size() {
     return this.stack.size;
   }
+  toString() {
+    return Array.from(this.stack.values()).toString();
+  }
 }
 export default Stack;

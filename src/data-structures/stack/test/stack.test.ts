@@ -26,6 +26,9 @@ describe("stack-map 测试", function () {
     const size = stack.size();
     expect(size).to.be.equal(2);
   });
+  it("toString", function () {
+    expect(stack.toString()).to.be.equal('1,2');
+  });
   it("清空栈", function () {
     stack.clear();
     expect(stack.size()).to.be.equal(0);
