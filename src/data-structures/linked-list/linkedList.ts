@@ -1,9 +1,10 @@
 import { defaultEquals } from '../../util';
 import { Node } from '../../models/linked-list-models';
+
 export default class LinkedList {
-  private head: any;
-  private count: number;
-  constructor(private equalsFn = defaultEquals) {
+  protected head: any;
+  protected count: number;
+  constructor(protected equalsFn = defaultEquals) {
     this.count = 0;
     this.head = undefined;
   }
@@ -23,7 +24,7 @@ export default class LinkedList {
   }
   insert(element: any, position: number) {
     // 检查越界值
-    if(position > 0 && position <= this.count) {
+    if(position > 0 && position <= this.count + 1) {
       const node = new Node(element);
       // 插入的是第一项的情况
       if(position === 1) {
@@ -91,6 +92,10 @@ export default class LinkedList {
   }
   getHead() {
     return this.head;
+  }
+  clear() {
+    this.head = undefined;
+    this.count = 0;
   }
   toString() {
     if(this.head == null) return '';
