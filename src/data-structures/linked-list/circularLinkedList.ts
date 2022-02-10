@@ -1,14 +1,12 @@
+import LinkedList from './linkedList';
 import { defaultEquals } from '../../util';
 import { Node } from '../../models/linked-list-models';
 
-export default class LinkedList {
-  protected head: any;
-  protected count: number;
-  constructor(protected equalsFn = defaultEquals) {
-    this.count = 0;
-    this.head = undefined;
+export default class CircularLinkedList extends LinkedList {
+  constructor(equalsFn = defaultEquals) {
+    super(equalsFn);
   }
-  push(element: any) {
+  push(element: any): void {
     const node = new Node(element);
     let current: Node;
     if(this.head == null) { // 链表为空的情况
@@ -20,17 +18,25 @@ export default class LinkedList {
       }
       current.next = node; // 将其next赋为新元素，建立链接
     }
+    node.next = this.head; // 将新元素的next赋为链表头，建立链接
     this.count++;
   }
-  insert(element: any, position: number) {
+  insert(element: any, position: number): boolean {
     // 检查越界值
-    if(position > 0 && position <= this.count + 1) {
+    if(position > 0 && position <= this.size() + 1) {
       const node = new Node(element);
+      let current = this.head;
       // 插入的是第一项的情况
       if(position === 1) {
-        const current = this.head;
-        node.next = current;
-        this.head = node;
+        if(this.head == null) {
+          this.head = node;
+          node.next = this.head;
+        } else {
+          node.next = current;
+          current = this.getElementAt(this.size());
+          this.head = node;
+          current.next = this.head;
+        }
       } else {
         const previous: any = this.getElementAt(position - 1);
         const current = previous?.next;
@@ -42,38 +48,21 @@ export default class LinkedList {
     }
     return false;
   }
-  getElementAt(index: number) {
-    // 检查越界值
-    if(index > 0 && index <= this.count) {
-      let current: Node = this.head;
-      for (let i = 1; i < index && current; i++) {
-        current = current.next;
-      }
-      return current;
-    }
-    return undefined;
-  }
-  remove(element: any) {
-    const index = this.indexOf(element);
-    return this.removeAt(index);
-  }
-  indexOf(element: any) {
-    let current: Node = this.head;
-    for (let i = 1; i <= this.count && current; i++){
-      if(this.equalsFn(element, current.element)) {
-        return i;
-      }
-      current = current.next;
-    }
-    return -1;
-  }
   removeAt(position: number) {
     // 检查越界值
-    if(position > 0 && position <= this.count) {
-      let current: Node = this.head;
+    if(position > 0 && position <= this.size()) {
+      let current = this.head;
       // 移除的是第一项的情况
       if(position === 1) {
-        this.head = current.next;
+        if(this.size() === 1) {
+          this.head = undefined;
+        } else {
+          const removed = this.head;
+          const tail: any = this.getElementAt(this.size());
+          this.head = this.head.next;
+          tail.next = this.head;
+          current = removed;
+        }
       } else {
         const previous: any = this.getElementAt(position - 1);
         current = previous?.next;
@@ -82,28 +71,16 @@ export default class LinkedList {
       this.count--;
       return current.element;
     }
-    return undefined;
-  }
-  isEmpty() {
-    return this.count === 0;
-  }
-  size() {
-    return this.count;
-  }
-  getHead() {
-    return this.head;
-  }
-  clear() {
-    this.head = undefined;
-    this.count = 0;
   }
   toString() {
     if(this.head == null) return '';
     let res = `${this.head.element}`;
     let current:Node = this.head.next;
-    while(current) {
+    let count = 1;
+    while(current && count < this.size()) {
       res += `, ${current.element}`
       current = current.next;
+      count++;
     }
     return res;
   }
