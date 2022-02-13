@@ -69,3 +69,7 @@ npm i -D mocha chai cross-env nyc sinon ts-node tsconfig-paths
 }
 
 ```
+
+## 参考
+
+[JavaScript版数据结构与算法1-15完整版](https://www.youtube.com/playlist?list=PLwIrqQCQ5pQmjH6YyFvH2A9FYL6bBB4Ra)
