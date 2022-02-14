@@ -1,4 +1,5 @@
 import { defaultToString } from '../../util';
+import { ValuePair } from '../../models/value-pair';
 
 export default class Dictionary{
   protected table: any;
@@ -63,13 +64,5 @@ export default class Dictionary{
       res = `${res}, ${valuePair[i].toString()}`;
     }
     return res;
-  }
-}
-
-class ValuePair {
-  constructor(public key: any, public value: any) {
-  }
-  toString() {
-    return `[#${this.key}: ${this.value}]`
   }
 }
