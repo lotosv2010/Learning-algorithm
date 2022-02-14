@@ -43,7 +43,7 @@ describe("散列表-HashTable 测试", function () {
     const res = hash.remove('Gandalf');
     assert.equal(res, true);
   });
-  it("put", function () {
+  it("clear", function () {
     hash.clear();
     assert.equal(hash.size(), 0);
   });
