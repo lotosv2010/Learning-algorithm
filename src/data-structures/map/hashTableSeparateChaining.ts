@@ -31,6 +31,7 @@ export default class HashTableSeparateChaining extends HashTable {
         current = current.next;
       }
     }
+    return undefined;
   }
   remove(key: any): boolean {
     const position = this.hashCode(key);

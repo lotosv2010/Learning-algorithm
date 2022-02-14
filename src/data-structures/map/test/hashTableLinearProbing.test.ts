@@ -1,9 +1,9 @@
 import "mocha";
 import { expect, assert } from "chai";
-import HashTableSeparateChaining from "../hashTableSeparateChaining";
+import HashTableLinearProbing from "../hashTableLinearProbing";
 
-describe("散列表-HashTableSeparateChaining 测试", function () {
-  const hash = new HashTableSeparateChaining();
+describe("散列表-HashTableLinearProbing 测试", function () {
+  const hash = new HashTableLinearProbing();
   it("put", function () {
     hash.put('Ygritte', 'ygritte@email.com');
     hash.put('Jonathan', 'jonathan@email.com');
@@ -36,7 +36,7 @@ describe("散列表-HashTableSeparateChaining 测试", function () {
   });
   it("toString", function () {
     const str = hash.toString();
-    assert.equal(str, `4 => [#Ygritte: ygritte@email.com], 5 => [#Jonathan: jonathan@email.com], [#Jamie: jamie@email.com], [#Sue: sue@email.com], [#Aethelwulf: aethelwulf@email.com], 7 => [#Jack: jack@email.com], [#Athelstan: athelstan@email.com], 8 => [#Jasmine: jasmine@email.com], 9 => [#Jake: jake@email.com], 10 => [#Nathan: nathan@email.com], [#Sargeras: sargeras@email.com]`);
+    assert.equal(str, `4 => [#Ygritte: ygritte@email.com], 5 => [#Jonathan: jonathan@email.com], 6 => [#Jamie: jamie@email.com], 7 => [#Jack: jack@email.com], 8 => [#Jasmine: jasmine@email.com], 9 => [#Jake: jake@email.com], 10 => [#Nathan: nathan@email.com], 11 => [#Athelstan: athelstan@email.com], 12 => [#Sue: sue@email.com], 13 => [#Aethelwulf: aethelwulf@email.com], 14 => [#Sargeras: sargeras@email.com]`);
   });
   it("remove", function () {
     const res = hash.remove('Jonathan');
