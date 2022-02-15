@@ -36,11 +36,38 @@ export default class BinarySearchTree {
   // 查找一个键
   search(key: any) {}
   // 先序遍历
-  preOrderTraverse() {}
+  preOrderTraverse(callback: Function) {
+    this.preOrderTraverseNode(this.root, callback);
+  }
+  private preOrderTraverseNode(node: Node | null, callback: Function) {
+    if(node) {
+      callback(node.key);
+      this.preOrderTraverseNode(node.left, callback);
+      this.preOrderTraverseNode(node.right, callback);
+    }
+  }
   // 中序遍历
-  inOrderTraverse() {}
+  inOrderTraverse(callback: Function) {
+    this.inOrderTraverseNode(this.root, callback);
+  }
+  private inOrderTraverseNode(node: Node | null, callback: Function) {
+    if(node) {
+      this.inOrderTraverseNode(node.left, callback);
+      callback(node.key);
+      this.inOrderTraverseNode(node.right, callback);
+    }
+  }
   // 后序遍历
-  postOrderTraverse() {}
+  postOrderTraverse(callback: Function) {
+    this.postOrderTraverseNode(this.root, callback);
+  }
+  private postOrderTraverseNode(node: Node | null, callback: Function) {
+    if(node) {
+      this.postOrderTraverseNode(node.left, callback);
+      this.postOrderTraverseNode(node.right, callback);
+      callback(node.key);
+    }
+  }
   // 返回树中最小的值/键
   min(){}
   // 返回树中最大的值/键
