@@ -38,4 +38,27 @@ describe("二叉搜索树-BinarySearchTree 测试", function () {
     tree.postOrderTraverse((v: any) => str += `${v} `);
     expect(str).to.be.deep.equal('3 6 5 8 10 9 7 12 14 13 18 25 20 15 11 ');
   });
+  it("min", function () {
+    const min = tree.min();
+    expect(min?.key).to.be.deep.equal(3);
+  });
+  it("max", function () {
+    const max = tree.max();
+    expect(max?.key).to.be.deep.equal(25);
+  });
+  it("search", function () {
+    const hasKey = [tree.search(3), tree.search(20), tree.search(30)];
+    expect(hasKey).to.be.deep.equal([true, true, false]);
+  });
+  it("remove", function () {
+    tree.remove(6);
+    // console.dir(tree.getRoot(), { depth: 10 });
+    tree.remove(5);
+    // console.dir(tree.getRoot(), { depth: 10 });
+    tree.remove(15);
+    // console.dir(tree.getRoot(), { depth: 10 });
+    let str = ``;
+    tree.inOrderTraverse((v: any) => str += `${v} `);
+    expect(str).to.be.deep.equal('3 7 8 9 10 11 12 13 14 18 20 25 ');
+  });
 });
