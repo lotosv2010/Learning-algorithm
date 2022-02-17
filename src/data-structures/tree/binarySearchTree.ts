@@ -14,7 +14,7 @@ export default class BinarySearchTree {
       this.insertNode(this.root, key);
     }
   }
-  private insertNode(node: Node, key: any) {
+  protected insertNode(node: Node, key: any) {
     if(this.compareFn(key, node.key) === Compare.LESS_THAN) {
       if(!node.left) {
         node.left = new Node(key);
@@ -107,7 +107,7 @@ export default class BinarySearchTree {
   remove(key: any) {
     this.root = this.removeNode(this.root, key);
   }
-  private removeNode(node: Node | null, key: any): Node | null {
+  protected removeNode(node: Node | null, key: any): Node | null {
     if(!node) return null;
     const compare = this.compareFn(key, node.key);
     if(compare === Compare.LESS_THAN) { // 键 小于 node.key
