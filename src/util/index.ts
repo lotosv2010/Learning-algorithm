@@ -33,3 +33,14 @@ export enum BalanceFactor {
   SLIGHTLY_UNBALANCED_LEFT = 4,
   UNBALANCED_LEFT = 5
 }
+
+export function swap(array: any[], a: number, b: number) {
+  /* const temp = array[a];
+  array[a] = array[b];
+  array[b] = temp; */
+  [array[a], array[b]] = [array[b], array[a]];
+}
+
+export function reverseCompare(compareFn: Function): Function {
+  return (a: any, b: any) => compareFn(b, a);
+}
