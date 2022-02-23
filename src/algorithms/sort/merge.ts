@@ -1,28 +1,24 @@
-export function merge(arr: Array<number>): Array<number> {
-  console.time('归并排序耗时');
-  const rec = (arr: Array<number>): Array<number> => {
-    if(arr.length < 2) return arr;
-    // 分
-    const middle = Math.floor(arr.length / 2);
-    const left = arr.slice(0, middle);
-    const right = arr.slice(middle, arr.length);
+import { defaultCompare, swap, Compare } from '../../util';
 
-    // 合
-    const sortLeft: Array<number> = rec(left);
-    const sortRight: Array<number> = rec(right);
-    const res: Array<number> = [];
-    while(sortLeft.length || sortRight.length) {
-      if(sortLeft.length && sortRight.length) {
-        res.push((sortLeft[0] < sortRight[0] ? sortLeft.shift() : sortRight.shift()) as number);
-      } else if(sortLeft.length) {
-        res.push(sortLeft.shift() as number);
-      } else if(sortRight.length) {
-        res.push(sortRight.shift() as number);
-      }
-    }
-    return res;
+const mergeSort = (left: Array<number>, right: Array<number>, compareFn: Function) => {
+  const result: number[] = [];
+  let l = 0;
+  let r = 0;
+  while(l < left.length && r < right.length) {
+    result.push(compareFn(left[l], right[r]) === Compare.BIGGER_THAN ? right[r++] : left[l++])
   }
-  const result = rec(arr);
-  console.timeEnd('归并排序耗时');
-  return result;
+  return result.concat(l < left.length ? left.slice(l) : right.slice(r));
+}
+
+export function merge(array: Array<number>, compareFn: Function = defaultCompare): Array<number> {
+  if(array.length > 1) {
+    // 分
+    const { length } = array;
+    const middle = Math.floor(length / 2);
+    const left = merge(array.slice(0, middle), compareFn);
+    const right = merge(array.slice(middle), compareFn);
+    // 合
+    array = mergeSort(left, right, compareFn);
+  }
+  return array;
 }
