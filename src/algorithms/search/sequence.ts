@@ -1,12 +1,15 @@
-export function sequence(arr: any[], target: any): number {
-  console.time('顺序搜索');
-  for (let i = 0; i < arr.length; i++) {
-    const element = arr[i];
-    if(element === target) {
-      console.timeEnd('顺序搜索');
+import { defaultEquals } from "../../util";
+
+export function sequential(
+  array: any[],
+  target: any,
+  equalsFn: Function = defaultEquals
+): number {
+  for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    if (equalsFn(element, target)) {
       return i;
     }
   }
-  console.timeEnd('顺序搜索');
   return -1;
 }
