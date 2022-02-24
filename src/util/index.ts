@@ -2,11 +2,27 @@ export const defaultEquals = (a: any, b: any) => {
   return a === b
 }
 
+export const lesserEquals = (a: any, b: any, compareFn: Function) => {
+  const comp = compareFn(a, b);
+  return comp === Compare.LESS_THAN || comp === Compare.EQUAL;
+}
+
+export const biggerEquals = (a: any, b: any, compareFn: Function) => {
+  const comp = compareFn(a, b);
+  return comp === Compare.BIGGER_THAN || comp === Compare.EQUAL;
+}
+
+export const defaultDiff = (a: any, b: any) => {
+  return Number(a) - Number(b);
+}
+
 export enum Compare {
   LESS_THAN = -1,
   BIGGER_THAN = 1,
   EQUAL = 0
 }
+
+export const DOES_NOT_EXIST = -1;
 
 export const defaultCompare = (a: any, b: any) => {
   if(a === b) {
