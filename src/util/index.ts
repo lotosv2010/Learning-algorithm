@@ -60,4 +60,4 @@ export function findMaxValue(array: any[], compareFn: Function = defaultCompare)
 
 export function findMinValue(array: any[], compareFn: Function = defaultCompare) {
   return findMaxValue(array, reverseCompare(compareFn));
-} 
+}
