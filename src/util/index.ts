@@ -44,3 +44,20 @@ export function swap(array: any[], a: number, b: number) {
 export function reverseCompare(compareFn: Function): Function {
   return (a: any, b: any) => compareFn(b, a);
 }
+
+export function findMaxValue(array: any[], compareFn: Function = defaultCompare) {
+  if(array && array.length) {
+    let max = array[0];
+    for (let i = 1; i < array.length; i++){
+      if(compareFn(max, array[i]) === Compare.LESS_THAN) {
+        max = array[i];
+      }
+    }
+    return max;
+  }
+  return undefined;
+}
+
+export function findMinValue(array: any[], compareFn: Function = defaultCompare) {
+  return findMaxValue(array, reverseCompare(compareFn));
+}
