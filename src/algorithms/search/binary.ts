@@ -1,42 +1,55 @@
-export function binary(arr: any[], target: any): number {
-  console.time('二分搜索');
-  const sec = (arr: any[], target: any, s:number = 0 , e: number = arr.length - 1): number => {
-    if (s > e) { // 新增否则找不到进入死循环了
-      return -1;
-    }
-    let start = s || 0;
-    let end = e || arr.length - 1;
-    const middle = Math.floor((start + end) / 2);
-    if(arr[middle] === target) {
-      return middle;
-    }
-    if(arr[middle] > target) { // 左侧
-      end = end - 1;
-      return sec(arr, target, start, end);
+import { defaultCompare, Compare } from "../../util";
+import { quick } from "../sort/quick";
+
+export function binary(
+  array: any[],
+  target: any,
+  compareFn: Function = defaultCompare
+): number {
+  const sortArray = quick(array);
+  let low = 0;
+  let high = array.length - 1;
+  while(low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    const element = sortArray[mid];
+    if (compareFn(element, target) === Compare.LESS_THAN) {
+      low = mid + 1;
+    } else if (compareFn(element, target) === Compare.BIGGER_THAN) {
+      high = mid - 1;
     } else {
-      start = middle + 1;
-      return sec(arr, target, start, end);
+      return mid;
     }
   }
-  const res = sec(arr, target);
-  console.timeEnd('二分搜索');
-  return res;
+  return -1;
 }
 
-export function binary1(arr: any[], target: any, start:number = 0 , end: number = arr.length - 1): number {
-  console.time('二分搜索');
-  while(start <= end) {
-    const middle = Math.floor((start + end) / 2);
-    if(arr[middle] === target) {
-      console.timeEnd('二分搜索');
-      return middle;
+const binarySearchRecursive = (
+  array: any[],
+  target: any,
+  low: number,
+  high: number,
+  compareFn: Function = defaultCompare
+): number => {
+  if(low <= high) {
+    const mid = Math.floor((low + high) / 2);
+    const element = array[mid];
+    if(compareFn(element, target) === Compare.LESS_THAN) {
+      return binarySearchRecursive(array, target, mid + 1, high, compareFn);
     }
-    if(arr[middle] > target) { // 左侧
-      end = end - 1;
-    } else {
-      start = middle + 1;
+    if(compareFn(element, target) === Compare.BIGGER_THAN) {
+      return binarySearchRecursive(array, target, low, mid - 1, compareFn);
     }
+    return mid;
   }
-  console.timeEnd('二分搜索');
   return -1;
+}
+export function binaryRecursive(
+  array: any[],
+  target: any,
+  compareFn: Function = defaultCompare
+): number {
+  const sortArray = quick(array);
+  let low = 0;
+  let high = array.length - 1;
+  return binarySearchRecursive(sortArray, target, low, high, compareFn);
 }
